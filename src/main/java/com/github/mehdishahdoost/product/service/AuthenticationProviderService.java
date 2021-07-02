@@ -43,7 +43,7 @@ public class AuthenticationProviderService implements AuthenticationProvider {
     }
 
     private Authentication checkPassword(CustomUserDetail user, String rawPassword, PasswordEncoder passwordEncoder) {
-        if(passwordEncoder.matches(user.getPassword(), rawPassword)) {
+        if(passwordEncoder.matches(rawPassword, user.getPassword())) {
             return new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(),
                     user.getAuthorities());
         }else {
